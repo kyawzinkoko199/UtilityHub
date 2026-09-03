@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="my" id="html-root">
+<html lang="en" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-mm="Utility Hub MM - အခမဲ့ အွန်လိုင်း ကိရိယာများ" data-en="Utility Hub MM - Free Online Tools">Utility Hub - အခမဲ့ အွန်လိုင်း ကိရိယာများ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@400;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -19,6 +20,15 @@
                 }
             }
         }
+    </script>
+    <style>
+        body, input, textarea, button, select {
+            font-family: 'Pyidaungsu', sans-serif !important;
+        }
+    </style>
+    <script type="module">
+             import { Mycal } from 'https://unpkg.com/mycal@latest/dist/browser/index.js';
+            window.Mycal = Mycal;
     </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
@@ -214,7 +224,33 @@
                 ရလဒ်: 0
             </div>
         </div>
+        <div class="bg-white p-6 rounded-3xl shadow-lg border border-slate-100 flex flex-col justify-between">
+    <div>
+        <h2 class="text-lg font-bold mb-3 text-yellow-600 flex items-center gap-2">
+            <i class="fa-solid fa-calendar-days"></i> 
+            <span data-mm="အင်္ဂလိပ်/မြန်မာ | မြန်မာ/အင်္ဂလိပ် ရက်စွဲပြောင်းရန်" data-en="English/Myanmar | Myanmar/English Calendar">အင်္ဂလိပ်/မြန်မာ | မြန်မာ/ အင်္ဂလိပ် ရက်စွဲပြောင်းရန်</span>
+        </h2>
+        
+        <!-- English to Myanmar -->
+        <div class="grid grid-cols-2 gap-2 mb-2">
+            <input type="date" id="gregorian-date-input" class="w-full p-2 border-2 border-slate-200 rounded-xl text-xs focus:outline-none focus:border-yellow-500">
+            <button onclick="convertEngToMyanmar()" class="bg-yellow-500 text-yellow-950 font-semibold py-2 rounded-xl hover:bg-yellow-600 transition shadow-sm cursor-pointer text-xs" data-mm="အင်္ဂလိပ်မှ မြန်မာသို့" data-en="Eng to Myanmar">အင်္ဂလိပ်မှ မြန်မာသို့</button>
+        </div>
 
+        <!-- Myanmar to English -->
+        <div class="border-t border-slate-100 my-2 pt-2">
+            <div class="grid grid-cols-3 gap-1 mb-2">
+                <input type="text" id="mm-year" oninput="this.value = convertToMyanmarDigits(this.value)" placeholder="သက္ကရာဇ် (ဥပမာ- ၁၃၈၅)" class="p-2 border-2 border-slate-200 rounded-xl text-[11px] focus:outline-none focus:border-yellow-500">
+                <input type="text" id="mm-month" oninput="this.value = convertToMyanmarDigits(this.value)" placeholder="လ (၁-၁၃)" class="p-2 border-2 border-slate-200 rounded-xl text-[11px] focus:outline-none focus:border-yellow-500">
+                <input type="text" id="mm-day" oninput="this.value = convertToMyanmarDigits(this.value)" placeholder="ရက် (၁-၃၀)" class="p-2 border-2 border-slate-200 rounded-xl text-[11px] focus:outline-none focus:border-yellow-500">
+            </div>
+            <button onclick="convertMyanmarToEng()" class="w-full bg-slate-200 text-slate-700 font-semibold py-2 rounded-xl hover:bg-slate-300 transition shadow-sm cursor-pointer text-xs" data-mm="မြန်မာမှ အင်္ဂလိပ်သို့" data-en="Myanmar to Eng">မြန်မာမှ အင်္ဂလိပ်သို့</button>
+        </div>
+    </div>
+    <div id="calendar-result" class="mt-3 bg-slate-50 p-3 rounded-xl text-center text-xs font-semibold text-slate-700 border border-slate-200" data-mm="ရလဒ်ပေါ်လာပါမည်" data-en="Result will appear here">
+        ရလဒ်ပေါ်လာပါမည်
+    </div>
+</div>
     </main>
 
 
@@ -353,7 +389,7 @@
             }
         }
 
-        function countText() {
+        function countText() { 
             const text = document.getElementById('text-input').value;
             const currentLang = document.getElementById('html-root').getAttribute('lang');
             document.getElementById('char-count').innerText = (currentLang === 'mm' ? "စာလုံးရေ: " : "Characters: ") + text.length;
@@ -562,6 +598,165 @@
                 document.getElementById('unit-result').innerText = `${val} lbs = ${res} kgs`;
             }
         }
+    // Digits conversion helper
+    function convertMyanmarDigits(inputStr) {
+        if (!inputStr) return '';
+        const mmDigits = ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'];
+        let output = inputStr.toString();
+        for (let i = 0; i < mmDigits.length; i++) {
+            output = output.replace(new RegExp(mmDigits[i], 'g'), i);
+        }
+        return output;
+    }
+
+    function convertToMyanmarDigits(inputStr) {
+        if (!inputStr) return '';
+        const engDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        const mmDigits = ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'];
+        let output = inputStr.toString();
+        for (let i = 0; i < 10; i++) {
+            output = output.replace(new RegExp(engDigits[i], 'g'), mmDigits[i]);
+        }
+        return output;
+    }
+
+    // လနာမည်များကို အင်္ဂလိပ်/မြန်မာ နှစ်မျိုးစလုံးအတွက် စနစ်တကျ ပြန်ပေးမည့် function
+    function getMonthName(monthNum, isMM) {
+         const monthsMm = [
+            "", "တန်ခူး", "ကဆုန်", "နယုန်", "ပထမဝါဆို", "ဝါဆို", 
+            "ဝါခေါင်", "တော်သလင်း", "သီတင်းကျွတ်", "တန်ဆောင်မုန်း", 
+            "နတ်တော်", "ပြာသို", "တပို့တွဲ", "တပေါင်း"
+        ];
+        
+        const monthsEn = [
+            "", "Tagu", "Kason", "Nayon", "First Waso", "Waso", 
+            "Wagaung", "Tawthalin", "Thadingyut", "Tazaungmon", 
+            "Nadaw", "Pyatho", "Tabodwe", "Tabaung"
+        ];
+
+        return isMM ? (monthsMm[monthNum] || "") : (monthsEn[monthNum] || "");
+    }
+
+    // မြန်မာလ အမည် (သို့) နံပါတ်ကို နံပါတ်စဉ် (1-13) သို့ ပြောင်းပေးသော function
+    function resolveMonthNumber(inputMonth) {
+        if (!inputMonth) return 0;
+        
+        let cleaned = convertMyanmarDigits(inputMonth).toString().trim();
+        if (!isNaN(cleaned)) {
+            return parseInt(cleaned, 10);
+        }
+
+        const monthMap = {
+            "တန်ခူး": 1, "tagu": 1, "ကဆုန်": 2, "kason": 2, "နယုန်": 3, "nayon": 3,
+            "ပထမဝါဆို": 4, "first waso": 4, "ဝါဆို": 5, "waso": 5,
+            "ဝါခေါင်": 6, "wagaung": 6, "တော်သလင်း": 7, "tawthalin": 7,
+            "သီတင်းကျွတ်": 8, "thadingyut": 8, "တန်ဆောင်မုန်း": 9, "tazaungmon": 9,
+            "နတ်တော်": 10, "nadaw": 10, "ပြာသို": 11, "pyatho": 11,
+            "တပို့တွဲ": 12, "tabodwe": 12, "တပေါင်း": 13, "tabaung": 13
+        };
+
+        return monthMap[cleaned.toLowerCase()] || 0;
+    }
+
+    // English to Myanmar Conversion
+    function convertEngToMyanmar() {
+        const dateVal = document.getElementById('gregorian-date-input').value;
+        const res = document.getElementById('calendar-result');
+        const isMM = document.getElementById('html-root')?.getAttribute('lang') === 'mm';
+
+        if (!dateVal) {
+            res.innerText = isMM ? "ကျေးဇူးပြု၍ အင်္ဂလိပ်ရက်စွဲ ရွေးချယ်ပါ" : "Please select an English date";
+            return;
+        }
+
+        try {
+            const dateObj = new Date(dateVal);
+            if (isNaN(dateObj.getTime())) throw new Error("Invalid Date");
+
+            const mmDate = new window.Mycal(dateObj);
+            const langKey = isMM ? 'my' : 'en';
+            
+            const monthName = mmDate.month[langKey];
+            const yearNum = mmDate.year[langKey];
+            const dayNum = mmDate.day.fd[langKey];
+            const moonPhase = mmDate.day.mp[langKey];
+
+            if (isMM) {
+                res.innerText = `မြန်မာရက်စွဲ: သက္ကရာဇ် ${yearNum} ခု၊ ${monthName}၊ ${moonPhase} ${dayNum} ရက်`;
+            } else {
+                res.innerText = `Myanmar Date: Year ${yearNum}, ${monthName}, ${moonPhase} ${dayNum}`;
+            }
+        } catch (e) {
+            res.innerText = isMM ? "ရက်စွဲပြောင်းလဲ၍ မရပါ။" : "Conversion error.";
+        }
+    }
+
+    // Myanmar to English Conversion
+    function convertMyanmarToEng() {
+        let mmYear = convertMyanmarDigits(document.getElementById('mm-year').value);
+        let rawMonth = document.getElementById('mm-month').value;
+        let mmDay = convertMyanmarDigits(document.getElementById('mm-day').value);
+
+        const res = document.getElementById('calendar-result');
+        const isMM = document.getElementById('html-root')?.getAttribute('lang') === 'mm';
+
+        if (!mmYear || !rawMonth || !mmDay) {
+            res.innerText = isMM ? "ကျေးဇူးပြု၍ မြန်မာ သက္ကရာဇ်၊ လ၊ ရက် အပြည့်အစုံထည့်ပါ" : "Please enter complete Myanmar year, month, and day";
+            return;
+        }
+
+        try {
+            const targetYear = parseInt(mmYear, 10);
+            const targetMonth = resolveMonthNumber(rawMonth);
+            const targetDay = parseInt(convertMyanmarDigits(mmDay), 10);
+
+            if (targetMonth === 0) {
+                res.innerText = isMM ? "လ အမည် သို့မဟုတ် နံပါတ် မှားယွင်းနေပါသည်။" : "Invalid Myanmar month.";
+                return;
+            }
+
+            let foundDateStr = "";
+            const approxEngYear = targetYear + 638;
+            const testDate = new Date(approxEngYear, 2, 1);
+
+            for (let i = 0; i < 450; i++) {
+                const tempCal = new window.Mycal(testDate);
+                
+                if (parseInt(tempCal.year.en, 10) === targetYear) {
+                    const currentMonthEn = tempCal.month.en.toLowerCase();
+                    const expectedMonthEn = getMonthName(targetMonth, false).toLowerCase();
+
+                    const mp = tempCal.day.mp.en.toLowerCase();
+                    const fd = parseInt(tempCal.day.fd.en, 10);
+                    
+                    let absDay = fd;
+                    if (mp === 'waning') {
+                        absDay = 15 + fd;
+                    } else if (mp === 'full moon') {
+                        absDay = 15;
+                    }
+
+                    if (currentMonthEn === expectedMonthEn && absDay === targetDay) {
+                        const yyyy = testDate.getFullYear();
+                        const mm = String(testDate.getMonth() + 1).padStart(2, '0');
+                        const dd = String(testDate.getDate()).padStart(2, '0');
+                        foundDateStr = `${yyyy}-${mm}-${dd}`;
+                        break;
+                    }
+                }
+                
+                testDate.setDate(testDate.getDate() + 1);
+            }
+
+            if (foundDateStr) {
+                res.innerText = `${isMM ? 'အင်္ဂလိပ်ရက်စွဲ' : 'English Date'}: ${foundDateStr}`;
+            } else {
+                res.innerText = isMM ? "မြန်မာရက်စွဲမှ အင်္ဂလိပ်သို့ ရှာမတွေ့ပါ။" : "Myanmar to English conversion error.";
+            }
+        } catch (e) {
+            res.innerText = isMM ? "မြန်မာရက်စွဲမှ အင်္ဂလိပ်သို့ ရှာမတွေ့ပါ။" : "Myanmar to English conversion error.";
+        }
+    }
     </script>
 
     <!-- Adsterra SocialBar -->
