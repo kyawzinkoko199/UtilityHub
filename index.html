@@ -32,7 +32,7 @@
     </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
-
+    
     <header class="bg-yellow-500 text-yellow-950 shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div>
@@ -47,7 +47,19 @@
             </button>
         </div>
     </header>
-
+    <!-- Adsterra 320x50 Banner -->
+    <div class="flex justify-center items-center my-4 px-4 overflow-hidden">
+        <script>
+            atOptions = {
+                'key' : '3c40d7b9adde6f830e482fb681b3dd5e',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highrevenueformat.com/3c40d7b9adde6f830e482fb681b3dd5e/invoke.js"></script>
+    </div>
     <main class="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-auto">
 
         <div class="bg-white p-6 rounded-3xl shadow-lg border border-slate-100 flex flex-col justify-between">
@@ -225,47 +237,72 @@
             </div>
         </div>
         <div class="bg-white p-6 rounded-3xl shadow-lg border border-slate-100 flex flex-col justify-between">
-    <div>
-        <h2 class="text-lg font-bold mb-3 text-yellow-600 flex items-center gap-2">
-            <i class="fa-solid fa-calendar-days"></i> 
-            <span data-mm="အင်္ဂလိပ်/မြန်မာ | မြန်မာ/အင်္ဂလိပ် ရက်စွဲပြောင်းရန်" data-en="English/Myanmar | Myanmar/English Calendar">အင်္ဂလိပ်/မြန်မာ | မြန်မာ/ အင်္ဂလိပ် ရက်စွဲပြောင်းရန်</span>
-        </h2>
-        
-        <!-- English to Myanmar -->
-        <div class="grid grid-cols-2 gap-2 mb-2">
-            <input type="date" id="gregorian-date-input" class="w-full p-2 border-2 border-slate-200 rounded-xl text-xs focus:outline-none focus:border-yellow-500">
-            <button onclick="convertEngToMyanmar()" class="bg-yellow-500 text-yellow-950 font-semibold py-2 rounded-xl hover:bg-yellow-600 transition shadow-sm cursor-pointer text-xs" data-mm="အင်္ဂလိပ်မှ မြန်မာသို့" data-en="Eng to Myanmar">အင်္ဂလိပ်မှ မြန်မာသို့</button>
-        </div>
-
-        <!-- Myanmar to English -->
-        <div class="border-t border-slate-100 my-2 pt-2">
-            <div class="grid grid-cols-3 gap-1 mb-2">
-                <input type="text" id="mm-year" oninput="this.value = convertToMyanmarDigits(this.value)" placeholder="သက္ကရာဇ် (ဥပမာ- ၁၃၈၅)" class="p-2 border-2 border-slate-200 rounded-xl text-[11px] focus:outline-none focus:border-yellow-500">
-                <input type="text" id="mm-month" oninput="this.value = convertToMyanmarDigits(this.value)" placeholder="လ (၁-၁၃)" class="p-2 border-2 border-slate-200 rounded-xl text-[11px] focus:outline-none focus:border-yellow-500">
-                <input type="text" id="mm-day" oninput="this.value = convertToMyanmarDigits(this.value)" placeholder="ရက် (၁-၃၀)" class="p-2 border-2 border-slate-200 rounded-xl text-[11px] focus:outline-none focus:border-yellow-500">
+            <h2 class="text-lg font-bold mb-3 text-yellow-600 flex items-center gap-2">
+                <i class="fa-solid fa-calendar-days"></i> 
+                <span data-mm="အင်္ဂလိပ်/မြန်မာ | မြန်မာ/အင်္ဂလိပ် ရက်စွဲပြောင်းရန်" data-en="English/Myanmar | Myanmar/English Calendar">အင်္ဂလိပ်/မြန်မာ | မြန်မာ/ အင်္ဂလိပ် ရက်စွဲပြောင်းရန်</span>
+            </h2>
+            
+            <!-- English to Myanmar -->
+            <div class="grid grid-cols-2 gap-2 mb-2">
+                <input type="date" id="gregorian-date-input" class="w-full p-2 border-2 border-slate-200 rounded-xl text-xs focus:outline-none focus:border-yellow-500">
+                <button onclick="convertEngToMyanmar()" class="bg-yellow-500 text-yellow-950 font-semibold py-2 rounded-xl hover:bg-yellow-600 transition shadow-sm cursor-pointer text-xs" data-mm="အင်္ဂလိပ်မှ မြန်မာသို့" data-en="Eng to Myanmar">အင်္ဂလိပ်မှ မြန်မာသို့</button>
             </div>
-            <button onclick="convertMyanmarToEng()" class="w-full bg-slate-200 text-slate-700 font-semibold py-2 rounded-xl hover:bg-slate-300 transition shadow-sm cursor-pointer text-xs" data-mm="မြန်မာမှ အင်္ဂလိပ်သို့" data-en="Myanmar to Eng">မြန်မာမှ အင်္ဂလိပ်သို့</button>
+
+            <!-- Myanmar to English -->
+            <div class="border-t border-slate-100 my-2 pt-2">
+                <div class="grid grid-cols-3 gap-1 mb-2">
+                    <input type="text" id="mm-year" oninput="this.value = convertToMyanmarDigits(this.value)" placeholder="သက္ကရာဇ် (ဥပမာ- ၁၃၈၅)" class="p-2 border-2 border-slate-200 rounded-xl text-[11px] focus:outline-none focus:border-yellow-500">
+                    <input type="text" id="mm-month" oninput="this.value = convertToMyanmarDigits(this.value)" placeholder="လ (၁-၁၃)" class="p-2 border-2 border-slate-200 rounded-xl text-[11px] focus:outline-none focus:border-yellow-500">
+                    <input type="text" id="mm-day" oninput="this.value = convertToMyanmarDigits(this.value)" placeholder="ရက် (၁-၃၀)" class="p-2 border-2 border-slate-200 rounded-xl text-[11px] focus:outline-none focus:border-yellow-500">
+                </div>
+                <button onclick="convertMyanmarToEng()" class="w-full bg-slate-200 text-slate-700 font-semibold py-2 rounded-xl hover:bg-slate-300 transition shadow-sm cursor-pointer text-xs" data-mm="မြန်မာမှ အင်္ဂလိပ်သို့" data-en="Myanmar to Eng">မြန်မာမှ အင်္ဂလိပ်သို့</button>
+            </div>
+            <div id="calendar-result" class="mt-3 bg-slate-50 p-3 rounded-xl text-center text-xs font-semibold text-slate-700 border border-slate-200" data-mm="ရလဒ်ပေါ်လာပါမည်" data-en="Result will appear here">
+            ရလဒ်ပေါ်လာပါမည်
+            </div>
         </div>
-    </div>
-    <div id="calendar-result" class="mt-3 bg-slate-50 p-3 rounded-xl text-center text-xs font-semibold text-slate-700 border border-slate-200" data-mm="ရလဒ်ပေါ်လာပါမည်" data-en="Result will appear here">
-        ရလဒ်ပေါ်လာပါမည်
-    </div>
-</div>
+       <!---svgtopng-->
+        <div class="bg-white p-6 rounded-3xl shadow-lg border border-slate-100 flex flex-col justify-between">
+            <div>
+                <h2 class="text-lg font-bold mb-3 text-yellow-600 flex items-center gap-2">
+                    <i class="fa-solid fa-file-image"></i> <span data-mm="SVG မှ PNG ပြောင်းရန်" data-en="SVG to PNG Converter">SVG မှ PNG ပြောင်းရန်</span>
+                </h2>
+                <input type="file" id="svg-file-input" accept=".svg" onchange="loadSVGFile(event)" class="w-full text-[11px] text-slate-500 file:mr-2 file:py-1.5 file:px-2.5 file:rounded-xl file:border-0 file:text-[11px] file:font-semibold file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100 mb-2 cursor-pointer">
+                <textarea id="svg-text-input" data-placeholder-mm="သို့မဟုတ် SVG Code ထည့်ရန်..." data-placeholder-en="Or paste SVG code..." placeholder="သို့မဟုတ် SVG Code ထည့်ရန်..." class="w-full p-2 border-2 border-slate-200 rounded-xl h-16 mb-2 focus:outline-none focus:border-yellow-500 text-xs font-mono"></textarea>
+                <div class="grid grid-cols-2 gap-2 mb-2">
+                    <input type="number" id="svg-width" placeholder="Width (px)" class="w-full p-2 border-2 border-slate-200 rounded-xl text-xs focus:outline-none focus:border-yellow-500">
+                    <input type="number" id="svg-height" placeholder="Height (px)" class="w-full p-2 border-2 border-slate-200 rounded-xl text-xs focus:outline-none focus:border-yellow-500">
+                </div>
+                <button onclick="convertSvgToPng()" class="w-full bg-yellow-500 text-yellow-950 font-semibold py-2 rounded-xl hover:bg-yellow-600 transition shadow-sm cursor-pointer text-xs" data-mm="PNG သို့ ပြောင်းမည်" data-en="Convert to PNG">PNG သို့ ပြောင်းမည်</button>
+            </div>
+            <div id="svg-result-container" class="mt-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-2 min-h-[60px]">
+                <span id="svg-status" class="text-xs font-semibold text-slate-500" data-mm="ရလဒ်ပေါ်လာပါမည်" data-en="Result will appear here">ရလဒ်ပေါ်လာပါမည်</span>
+                <a id="svg-download-link" href="#" download="converted.png" class="hidden bg-green-600 text-white font-semibold px-3 py-1.5 rounded-xl text-xs hover:bg-green-700 shadow-sm transition flex items-center gap-1">
+                    <i class="fa-solid fa-download"></i> <span data-mm="PNG ဒေါင်းလုဒ်လုပ်ရန်" data-en="Download PNG">PNG ဒေါင်းလုဒ်လုပ်ရန်</span>
+                </a>
+            </div>
+        </div>
+        <!--texttospeech-->
+        <div class="bg-white p-6 rounded-3xl shadow-lg border border-slate-100 flex flex-col justify-between">
+            <div>
+                <h2 class="text-lg font-bold mb-3 text-yellow-600 flex items-center gap-2">
+                    <i class="fa-solid fa-volume-high"></i> 
+                    <span data-mm="မြန်မာမှ အင်္ဂလိပ်သို့ ပြန်ဆိုပြီး အသံထွက်ရန်" data-en="Myanmar to English Speech">မြန်မာမှ အင်္ဂလိပ်သို့ ပြန်ဆိုပြီး အသံထွက်ရန်</span>
+                </h2>
+                <textarea id="tts-mm-input" data-placeholder-mm="မြန်မာစာသားများ ရိုက်ထည့်ပါ..." data-placeholder-en="Type Myanmar text here..." placeholder="မြန်မာစာသားများ ရိုက်ထည့်ပါ..." class="w-full p-3 border-2 border-slate-200 rounded-xl h-20 mb-2 focus:outline-none focus:border-yellow-500 text-xs"></textarea>
+                
+                <button id="tts-speak-btn" onclick="translateAndSpeakMMToEN()" class="w-full bg-yellow-500 text-yellow-950 font-semibold py-2 rounded-xl hover:bg-yellow-600 transition shadow-sm cursor-pointer text-xs flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-play"></i> 
+                    <span data-mm="ဘာသာပြန်ပြီး အသံထွက်မည်" data-en="Translate & Speak">ဘာသာပြန်ပြီး အသံထွက်မည်</span>
+                </button>
+            </div>
+
+            <div class="mt-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                <p class="text-[10px] text-slate-400 font-semibold mb-1" data-mm="အင်္ဂလိပ် ဘာသာပြန် ရလဒ်:" data-en="English Translation:">အင်္ဂလိပ် ဘာသာပြန် ရလဒ်:</p>
+                <p id="tts-english-output" class="text-xs text-slate-700 font-medium italic min-h-[20px]" data-mm="ဒီမှာ ဘာသာပြန် ပေါ်လာပါမည်..." data-en="Translation will appear here...">ဒီမှာ ဘာသာပြန် ပေါ်လာပါမည်...</p>
+            </div>
+        </div>
     </main>
-
-
-    <!-- Adsterra 320x50 Banner -->
-    <div class="flex justify-center items-center my-4 px-4 overflow-hidden">
-        <script>
-            atOptions = {
-                'key' : '3c40d7b9adde6f830e482fb681b3dd5e',
-                'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
-                'params' : {}
-            };
-        </script>
-        <script src="https://www.highrevenueformat.com/3c40d7b9adde6f830e482fb681b3dd5e/invoke.js"></script>
 
     <!-- Adsterra 728x90 Banner -->
     <div class="flex justify-center items-center my-6 px-4 overflow-hidden">
@@ -284,7 +321,6 @@
     <footer class="bg-white border-t border-slate-100 py-6 mt-12 text-center text-slate-500 text-sm shadow-inner">
         <p data-mm="&copy; 2026 Utility Hub MM. Developed by kyawzinko." data-en="&copy; 2026 Utility Hub MM. Developed by kyawzinko.">&copy; 2026 Utility Hub MM. Developed by kyawzinko.</p>
     </footer>
-
     <script>
 
         function toggleLanguage() {
@@ -756,8 +792,114 @@
         } catch (e) {
             res.innerText = isMM ? "မြန်မာရက်စွဲမှ အင်္ဂလိပ်သို့ ရှာမတွေ့ပါ။" : "Myanmar to English conversion error.";
         }
-    }
+    }  
+    /* SVG to PNG Functions */
+        function loadSVGFile(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('svg-text-input').value = e.target.result;
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        function convertSvgToPng() {
+            const svgData = document.getElementById('svg-text-input').value.trim();
+            const widthInput = document.getElementById('svg-width').value;
+            const heightInput = document.getElementById('svg-height').value;
+            const status = document.getElementById('svg-status');
+            const downloadBtn = document.getElementById('svg-download-link');
+            const canvas = document.getElementById('hidden-svg-canvas');
+            const ctx = canvas.getContext('2d');
+            const currentLang = document.getElementById('html-root').getAttribute('lang');
+
+            if (!svgData) {
+                alert(currentLang === 'mm' ? 'SVG စာသား သို့မဟုတ် ဖိုင်ထည့်ပါ' : 'Please provide SVG code or file');
+                return;
+            }
+
+            const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const img = new Image();
+
+            img.onload = function() {
+                const width = parseInt(widthInput) || img.width || 300;
+                const height = parseInt(heightInput) || img.height || 150;
+
+                canvas.width = width;
+                canvas.height = height;
+
+                ctx.clearRect(0, 0, width, height);
+                ctx.drawImage(img, 0, 0, width, height);
+
+                const pngUrl = canvas.toDataURL('image/png');
+                downloadBtn.href = pngUrl;
+                downloadBtn.classList.remove('hidden');
+                status.innerText = currentLang === 'mm' ? 'PNG ပြောင်းလဲပြီးပါပြီ!' : 'Converted to PNG!';
+                status.className = 'text-xs font-semibold text-green-600';
+
+                URL.revokeObjectURL(url);
+            };
+
+            img.onerror = function() {
+                status.innerText = currentLang === 'mm' ? 'SVG ကုဒ် မှားယွင်းနေပါသည်' : 'Invalid SVG Code';
+                status.className = 'text-xs font-semibold text-red-500';
+                downloadBtn.classList.add('hidden');
+                URL.revokeObjectURL(url);
+            };
+
+            img.src = url;
+        } 
     </script>
+    /* text-to-speech */
+    <script>
+        async function translateAndSpeakMMToEN() {
+            const mmText = document.getElementById('tts-mm-input').value.trim();
+            const englishOutput = document.getElementById('tts-english-output');
+            const speakBtn = document.getElementById('tts-speak-btn');
+            const currentLang = document.getElementById('html-root')?.getAttribute('lang') || 'mm';
+
+            if (!mmText) {
+                alert(currentLang === 'mm' ? 'ကျေးဇူးပြု၍ မြန်မာစာသား ထည့်သွင်းပါ' : 'Please enter Myanmar text');
+                return;
+            }
+
+            speakBtn.disabled = true;
+            speakBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            englishOutput.innerText = currentLang === 'mm' ? 'ဘာသာပြန်နေပါသည်...' : 'Translating...';
+
+            try {
+                // MyMemory Translation API Call (Myanmar 'my' -> English 'en')
+                const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(mmText)}&langpair=my|en`);
+                const data = await response.json();
+
+                const translatedText = data.responseData.translatedText;
+                englishOutput.innerText = translatedText;
+
+                // Speech Synthesis (Text-to-Speech Engine)
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+
+                    const utterance = new SpeechSynthesisUtterance(translatedText);
+                    utterance.lang = 'en-US';
+                    utterance.pitch = 1.0;
+
+                    window.speechSynthesis.speak(utterance);
+                } else {
+                    alert(currentLang === 'mm' ? 'သင့် Browser တွင် အသံထွက်စနစ် မပံ့ပိုးပါ' : 'Text-to-Speech is not supported in this browser.');
+                }
+            } catch (error) {
+                console.error(error);
+                englishOutput.innerText = currentLang === 'mm' ? 'ဘာသာပြန်ရာတွင် အမှားအယွင်းရှိနေပါသည်။' : 'Translation Error.';
+            } finally {
+                speakBtn.disabled = false;
+                speakBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+    </script>
+    
 
     <!-- Adsterra SocialBar -->
     <script src="https://pl31105427.profitableratecpmnetwork.com/5a/77/9b/5a779b93d3790d5c8ac1bfaf5cd368d5.js"></script>
